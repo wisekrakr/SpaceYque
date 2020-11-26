@@ -27,7 +27,7 @@ class RenderingSystem(
 
     override fun update(deltaTime: Float) {
         //forces an entity in front of the other if the y coord is lower
-        
+
         forceSort()
         viewport.apply()
         batch.use(viewport.camera.combined) {
