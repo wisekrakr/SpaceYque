@@ -1,0 +1,41 @@
+
+graphics.png
+size: 1024,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+enemy01_ship
+  rotate: false
+  xy: 212, 4
+  size: 209, 182
+  orig: 209, 182
+  offset: 0, 0
+  index: -1
+enemy02_ship
+  rotate: false
+  xy: 1, 4
+  size: 209, 182
+  orig: 209, 182
+  offset: 0, 0
+  index: -1
+player_ship
+  rotate: false
+  xy: 587, 1
+  size: 162, 185
+  orig: 162, 185
+  offset: 0, 0
+  index: -1
+player_ship_left
+  rotate: false
+  xy: 423, 1
+  size: 162, 185
+  orig: 162, 185
+  offset: 0, 0
+  index: -1
+player_ship_right
+  rotate: false
+  xy: 751, 1
+  size: 162, 185
+  orig: 162, 185
+  offset: 0, 0
+  index: -1
