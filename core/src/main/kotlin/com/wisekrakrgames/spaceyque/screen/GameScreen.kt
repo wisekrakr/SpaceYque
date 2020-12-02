@@ -1,10 +1,10 @@
 package com.wisekrakrgames.spaceyque.screen
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.badlogic.gdx.utils.viewport.FitViewport
 import com.wisekrakrgames.spaceyque.SpaceYque
+import com.wisekrakrgames.spaceyque.entity.system.MAX_TIME_STEP
 import ktx.log.debug
 import ktx.log.logger
+import kotlin.math.min
 
 private val LOG = logger<GameScreen>()
 
@@ -16,9 +16,8 @@ class GameScreen(game: SpaceYque) : AbstractScreen(game){
 
     override fun render(delta: Float) {
         graphicsRenderer.renderCalls = 0
-        gameEngine.update(delta)
+        gameEngine.update(min(MAX_TIME_STEP, delta))
     }
-
 
     override fun dispose() {
         graphicsRenderer.dispose()

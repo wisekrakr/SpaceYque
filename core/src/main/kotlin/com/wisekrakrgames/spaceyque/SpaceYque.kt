@@ -15,7 +15,6 @@ class SpaceYque : KtxGame<AbstractScreen>() {
     val viewport = FitViewport(WORLD_WIDTH, WORLD_HEIGHT)
     val graphicsRenderer: GraphicsRenderer by lazy {  GraphicsRenderer() }
     val gameEngine: GameEngine by lazy { GameEngine(viewport, graphicsRenderer).apply {
-
         addAllSystems()
     } }
     val spaceEngine: SpaceEngine by lazy { SpaceEngine(this) }

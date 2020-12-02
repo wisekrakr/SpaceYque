@@ -13,18 +13,18 @@ interface ComponentMapperHolder {
         return transform
     }
 
-    fun getMoving(entity: Entity): MoveComponent {
-        val move = entity[MoveComponent.mapper]
+    fun getMovement(entity: Entity): MovementComponent {
+        val move = entity[MovementComponent.mapper]
         require(move != null){"Entity must have a Graphic Component: $entity"}
 
         return move
     }
 
-    fun getOrientation(entity: Entity): OrientationComponent {
-        val orientation = entity[OrientationComponent.mapper]
-        require(orientation != null){"Entity must have a Direction Component: $entity"}
+    fun getPlayerDirectionTextureComponent(entity: Entity): PlayerDirectionTextureComponent {
+        val directionTextureComponent = entity[PlayerDirectionTextureComponent.mapper]
+        require(directionTextureComponent != null){"Entity must have a Direction Component: $entity"}
 
-        return orientation
+        return directionTextureComponent
     }
 
     fun getGraphics(entity: Entity): GraphicComponent {
@@ -39,5 +39,12 @@ interface ComponentMapperHolder {
         require(remove != null){"Entity must have a Remove Component: $entity"}
 
         return remove
+    }
+
+    fun getPlayerComponent(entity: Entity): PlayerComponent {
+        val player = entity[PlayerComponent.mapper]
+        require(player != null){"Entity must have a Player Component: $entity"}
+
+        return player
     }
 }

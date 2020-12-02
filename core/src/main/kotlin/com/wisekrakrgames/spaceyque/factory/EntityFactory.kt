@@ -27,7 +27,6 @@ class EntityFactory {
             with<GraphicComponent>{
                 setSpriteRegion(region)
             }
-            with<RemoveComponent>()
         }
     }
 }

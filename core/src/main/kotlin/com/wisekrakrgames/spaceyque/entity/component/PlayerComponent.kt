@@ -6,15 +6,16 @@ import ktx.ashley.mapperFor
 
 
 
-class PlayerComponent: AbstractEntityComponent(), Component, Pool.Poolable {
+class PlayerComponent: AbstractPlayerComponent(), Component, Pool.Poolable {
 
 
     override fun reset() {
-        life = MAX_LIFE
-        maxLife = MAX_LIFE
+        health = MAX_HEALTH
+        maxHealth = MAX_HEALTH
         shield = 0f
         maxShield = MAX_SHIELD
         distance = 0f
+
     }
 
     companion object{

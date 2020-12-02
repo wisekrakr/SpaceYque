@@ -6,22 +6,19 @@ import com.wisekrakrgames.spaceyque.entity.system.*
 import com.wisekrakrgames.spaceyque.graphics.GraphicsRenderer
 
 class GameEngine(
-        val viewport: Viewport,
-        val graphicsRenderer: GraphicsRenderer
+        private val viewport: Viewport,
+        private val graphicsRenderer: GraphicsRenderer
 ) : PooledEngine() {
 
     fun addAllSystems(){
         addSystem(InputSystem(viewport))
-        addSystem(MoveSystem())
-        addSystem(PlayerAnimationSystem(
-                graphicsRenderer.graphicsAtlas.findRegion("player_ship"),
-                graphicsRenderer.graphicsAtlas.findRegion("player_ship_left"),
-                graphicsRenderer.graphicsAtlas.findRegion("player_ship_right")
-        ))
-        addSystem(RenderingSystem(graphicsRenderer,viewport ))
+        addSystem(MovementSystem(viewport))
+        addSystem(DamageSystem())
+        addSystem(PlayerAnimationSystem(graphicsRenderer))
+        addSystem(RenderingSystem(graphicsRenderer,viewport))
+        addSystem(PhysicsSystem())
 
-
-
+        addSystem(DebugSystem(viewport.camera))
         addSystem(RemoveSystem())
     }
 }

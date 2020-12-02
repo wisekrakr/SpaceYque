@@ -6,15 +6,20 @@ import com.badlogic.ashley.core.EntityListener
 import com.badlogic.ashley.systems.IteratingSystem
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.wisekrakrgames.spaceyque.entity.component.*
+import com.wisekrakrgames.spaceyque.graphics.GraphicsRenderer
 import ktx.ashley.allOf
 import ktx.ashley.get
 
 class PlayerAnimationSystem(
-        private val defaultRegion: TextureRegion,
-        private val leftRegion: TextureRegion,
-        private val rightRegion: TextureRegion
-) : IteratingSystem(allOf(PlayerComponent::class, OrientationComponent::class, GraphicComponent::class).get()),
+        graphicsRenderer: GraphicsRenderer
+) : IteratingSystem(allOf(PlayerComponent::class, PlayerDirectionTextureComponent::class, GraphicComponent::class).get()),
         EntityListener, ComponentMapperHolder{
+
+    private val defaultRegion : TextureRegion
+
+    init {
+        defaultRegion = graphicsRenderer.graphicsAtlas.findRegion("playerShip2_blue")
+    }
 
     override fun addedToEngine(engine: Engine) {
         super.addedToEngine(engine)
@@ -33,7 +38,7 @@ class PlayerAnimationSystem(
     override fun entityRemoved(entity: Entity?) = Unit
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
-        val direction = getOrientation(entity)
+        val direction = getPlayerDirectionTextureComponent(entity)
         val graphic = getGraphics(entity)
 
         if(direction.direction == direction.lastDirection && graphic.sprite.texture != null){
@@ -41,13 +46,13 @@ class PlayerAnimationSystem(
             return
         }
 
-        direction.lastDirection = direction.direction
-        val region = when(direction.direction){
-            Orientation.LEFT -> leftRegion
-            Orientation.RIGHT -> rightRegion
-            else -> defaultRegion
-        }
-        graphic.setSpriteRegion(region)
+//        direction.lastDirection = direction.direction
+//        val region = when(direction.direction){
+//            Orientation.LEFT -> leftRegion
+//            Orientation.RIGHT -> rightRegion
+//            else -> defaultRegion
+//        }
+        graphic.setSpriteRegion(defaultRegion)
 
     }
 }

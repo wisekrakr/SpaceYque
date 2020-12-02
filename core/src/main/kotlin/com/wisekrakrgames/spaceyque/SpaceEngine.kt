@@ -8,12 +8,15 @@ class SpaceEngine(game: SpaceYque) {
     private val entityFactory = EntityFactory()
 
 
-    private val player = PlayerEntity(game)
+    val player = PlayerEntity(game, game.viewport.worldWidth/2, game.viewport.worldHeight/2)
 
     fun initEntities(gameEngine: GameEngine, graphicsRenderer: GraphicsRenderer){
 
-//        entityFactory.spawnEntity(gameEngine, graphicsRenderer.graphicsAtlas.findRegion("enemy01_ship"))
-//        entityFactory.spawnEntity(gameEngine, graphicsRenderer.graphicsAtlas.findRegion("enemy02_ship"))
+        for(i in 1..3){
+            entityFactory.spawnEntity(gameEngine, graphicsRenderer.graphicsAtlas.findRegion("enemyBlack4"))
+            entityFactory.spawnEntity(gameEngine, graphicsRenderer.graphicsAtlas.findRegion("enemyRed1"))
+        }
+
 
     }
 
