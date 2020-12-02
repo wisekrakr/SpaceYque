@@ -7,20 +7,19 @@ import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.Camera
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import com.badlogic.gdx.math.MathUtils
 import com.wisekrakrgames.spaceyque.entity.component.PlayerComponent
+import com.wisekrakrgames.spaceyque.entity.system.ComponentMapperHolder.Companion.getPlayerComponent
+import com.wisekrakrgames.spaceyque.entity.system.ComponentMapperHolder.Companion.getTransformComponent
 import ktx.ashley.allOf
 import ktx.ashley.getSystem
-import kotlin.math.cos
 import kotlin.math.max
 import kotlin.math.min
-import kotlin.math.sin
 
 private const val DEBUG_UPDATE_RATE = 0.5f
 
 class DebugSystem(
         var camera: Camera
-) : IntervalIteratingSystem(allOf(PlayerComponent::class).get(), DEBUG_UPDATE_RATE), ComponentMapperHolder {
+) : IntervalIteratingSystem(allOf(PlayerComponent::class).get(), DEBUG_UPDATE_RATE) {
 
     private val shapeRenderer: ShapeRenderer = ShapeRenderer()
 
@@ -30,7 +29,7 @@ class DebugSystem(
     }
 
     override fun processEntity(entity: Entity) {
-        val transform = getTransform(entity)
+        val transform = getTransformComponent(entity)
         val player = getPlayerComponent(entity)
 
         shapeRenderer.begin()

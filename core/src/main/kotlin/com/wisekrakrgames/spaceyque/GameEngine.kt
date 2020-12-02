@@ -15,8 +15,12 @@ class GameEngine(
         addSystem(MovementSystem(viewport))
         addSystem(DamageSystem())
         addSystem(PlayerAnimationSystem(graphicsRenderer))
+        addSystem(AttachSystem())
+        addSystem(AnimationSystem(graphicsRenderer.graphics))
         addSystem(RenderingSystem(graphicsRenderer,viewport))
         addSystem(PhysicsSystem())
+
+
 
         addSystem(DebugSystem(viewport.camera))
         addSystem(RemoveSystem())

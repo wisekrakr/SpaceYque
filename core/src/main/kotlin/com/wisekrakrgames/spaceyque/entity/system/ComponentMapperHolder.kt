@@ -4,47 +4,71 @@ import com.badlogic.ashley.core.Entity
 import com.wisekrakrgames.spaceyque.entity.component.*
 import ktx.ashley.get
 
-interface ComponentMapperHolder {
+abstract class ComponentMapperHolder {
 
-    fun getTransform(entity: Entity): TransformComponent {
-        val transform = entity[TransformComponent.mapper]
-        require(transform != null){"Entity must have a Transform Component: $entity"}
+    companion object {
 
-        return transform
-    }
+        fun getTransformComponent(entity: Entity): TransformComponent {
+            val transform = entity[TransformComponent.mapper]
+            require(transform != null) { "Entity must have a Transform Component: $entity" }
 
-    fun getMovement(entity: Entity): MovementComponent {
-        val move = entity[MovementComponent.mapper]
-        require(move != null){"Entity must have a Graphic Component: $entity"}
+            return transform
+        }
 
-        return move
-    }
+        fun getMovementComponent(entity: Entity): MovementComponent {
+            val move = entity[MovementComponent.mapper]
+            require(move != null) { "Entity must have a Graphic Component: $entity" }
 
-    fun getPlayerDirectionTextureComponent(entity: Entity): PlayerDirectionTextureComponent {
-        val directionTextureComponent = entity[PlayerDirectionTextureComponent.mapper]
-        require(directionTextureComponent != null){"Entity must have a Direction Component: $entity"}
+            return move
+        }
 
-        return directionTextureComponent
-    }
+        fun getPlayerDirectionTextureComponent(entity: Entity): PlayerDirectionTextureComponent {
+            val directionTextureComponent = entity[PlayerDirectionTextureComponent.mapper]
+            require(directionTextureComponent != null) { "Entity must have a Direction Component: $entity" }
 
-    fun getGraphics(entity: Entity): GraphicComponent {
-        val graphic = entity[GraphicComponent.mapper]
-        require(graphic != null){"Entity must have a Graphic Component: $entity"}
+            return directionTextureComponent
+        }
 
-        return graphic
-    }
+        fun getGraphicsComponent(entity: Entity): GraphicComponent {
+            val graphic = entity[GraphicComponent.mapper]
+            require(graphic != null) { "Entity must have a Graphic Component: $entity" }
 
-    fun getRemove(entity: Entity): RemoveComponent {
-        val remove = entity[RemoveComponent.mapper]
-        require(remove != null){"Entity must have a Remove Component: $entity"}
+            return graphic
+        }
 
-        return remove
-    }
+        fun getRemoveComponent(entity: Entity): RemoveComponent {
+            val remove = entity[RemoveComponent.mapper]
+            require(remove != null) { "Entity must have a Remove Component: $entity" }
 
-    fun getPlayerComponent(entity: Entity): PlayerComponent {
-        val player = entity[PlayerComponent.mapper]
-        require(player != null){"Entity must have a Player Component: $entity"}
+            return remove
+        }
 
-        return player
+        fun getPlayerComponent(entity: Entity): PlayerComponent {
+            val player = entity[PlayerComponent.mapper]
+            require(player != null) { "Entity must have a Player Component: $entity" }
+
+            return player
+        }
+
+        fun getBigEmptyComponent(entity: Entity): BigEmptyComponent {
+            val bigEmpty = entity[BigEmptyComponent.mapper]
+            require(bigEmpty != null) { "Entity must have a Big Empty Component: $entity" }
+
+            return bigEmpty
+        }
+
+        fun getAnimationComponent(entity: Entity): AnimationComponent {
+            val animation = entity[AnimationComponent.mapper]
+            require(animation != null) { "Entity must have an Animation Component: $entity" }
+
+            return animation
+        }
+
+        fun getAttachComponent(entity: Entity): AttachComponent {
+            val attach = entity[AttachComponent.mapper]
+            require(attach != null) { "Entity must have an Attach Component: $entity" }
+
+            return attach
+        }
     }
 }

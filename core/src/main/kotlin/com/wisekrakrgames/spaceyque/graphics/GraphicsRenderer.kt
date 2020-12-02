@@ -10,7 +10,7 @@ private val LOG = logger<GraphicsRenderer>()
 
 class GraphicsRenderer : SpriteBatch(){
 
-    val graphicsAtlas by lazy { TextureAtlas(Gdx.files.internal("graphics/graphics.atlas")) }
+    val graphics by lazy { TextureAtlas(Gdx.files.internal("graphics/graphics.atlas")) }
 
     fun init(){
         setAllGraphics()
@@ -22,7 +22,7 @@ class GraphicsRenderer : SpriteBatch(){
 
     override fun dispose() {
         super.dispose()
-        graphicsAtlas.dispose()
+        graphics.dispose()
 
         LOG.debug { "Sprites in batch: ${this.maxSpritesInBatch}" }
     }

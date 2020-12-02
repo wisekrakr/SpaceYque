@@ -1,0 +1,97 @@
+
+graphics_theBigEmpty.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+error
+  rotate: false
+  xy: 2, 2
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+frame
+  rotate: false
+  xy: 2, 648
+  size: 220, 310
+  orig: 220, 310
+  offset: 0, 0
+  index: 0
+frame
+  rotate: false
+  xy: 2, 336
+  size: 220, 310
+  orig: 220, 310
+  offset: 0, 0
+  index: 1
+frame
+  rotate: false
+  xy: 224, 648
+  size: 220, 310
+  orig: 220, 310
+  offset: 0, 0
+  index: 2
+frame
+  rotate: false
+  xy: 2, 24
+  size: 220, 310
+  orig: 220, 310
+  offset: 0, 0
+  index: 3
+frame
+  rotate: false
+  xy: 224, 336
+  size: 220, 310
+  orig: 220, 310
+  offset: 0, 0
+  index: 4
+frame
+  rotate: false
+  xy: 446, 648
+  size: 220, 310
+  orig: 220, 310
+  offset: 0, 0
+  index: 5
+frame
+  rotate: false
+  xy: 224, 24
+  size: 220, 310
+  orig: 220, 310
+  offset: 0, 0
+  index: 6
+frame
+  rotate: false
+  xy: 446, 336
+  size: 220, 310
+  orig: 220, 310
+  offset: 0, 0
+  index: 7
+frame
+  rotate: false
+  xy: 668, 648
+  size: 220, 310
+  orig: 220, 310
+  offset: 0, 0
+  index: 8
+frame
+  rotate: false
+  xy: 446, 24
+  size: 220, 310
+  orig: 220, 310
+  offset: 0, 0
+  index: 9
+frame
+  rotate: false
+  xy: 668, 336
+  size: 220, 310
+  orig: 220, 310
+  offset: 0, 0
+  index: 10
+frame
+  rotate: false
+  xy: 668, 24
+  size: 220, 310
+  orig: 220, 310
+  offset: 0, 0
+  index: 11

@@ -9,6 +9,8 @@ import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.math.Vector3
 import com.badlogic.gdx.utils.viewport.Viewport
 import com.wisekrakrgames.spaceyque.entity.component.*
+import com.wisekrakrgames.spaceyque.entity.system.ComponentMapperHolder.Companion.getMovementComponent
+import com.wisekrakrgames.spaceyque.entity.system.ComponentMapperHolder.Companion.getTransformComponent
 import com.wisekrakrgames.spaceyque.screen.WORLD_HEIGHT
 import com.wisekrakrgames.spaceyque.screen.WORLD_WIDTH
 import ktx.ashley.allOf
@@ -28,15 +30,13 @@ private const val MAX_HOR_SPEED = 5.5f
 
 class MovementSystem(
         private val viewport: Viewport,
-):
-        IteratingSystem(allOf(TransformComponent::class, MovementComponent::class).exclude(RemoveComponent::class).get()),
-        ComponentMapperHolder
-{
+):IteratingSystem(allOf(TransformComponent::class, MovementComponent::class).exclude(RemoveComponent::class).get()){
+
     private val isFreeRoamGame = false
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
-        val transform = getTransform(entity)
-        val move = getMovement(entity)
+        val transform = getTransformComponent(entity)
+        val move = getMovementComponent(entity)
 
         if(isFreeRoamGame) freeRoamPlayerMovement(transform, move, deltaTime)
 
@@ -44,6 +44,7 @@ class MovementSystem(
         if (player != null) {
             entity[PlayerDirectionTextureComponent.mapper]?.let { direction ->
                 movePlayer(transform, move, player, direction, deltaTime)
+                freeRoamPlayerMovement(transform, move, deltaTime)
             }
         } else {
             moveEntity(transform, move, deltaTime)
@@ -119,9 +120,9 @@ class MovementSystem(
         transform.apply {
             position.x += (movement.velocity.x + movement.acceleration * cos(movement.angle)).toFloat() * deltaTime
             position.y += (movement.velocity.y + movement.acceleration * sin(movement.angle)).toFloat() * deltaTime
-            rotation = movement.angle.toFloat() * MathUtils.PI /2 * deltaTime
+            //rotation = movement.angle.toFloat() * MathUtils.PI /2 * deltaTime
         }
-        cameraMovement(transform, movement)
+        //cameraMovement(transform, movement)
     }
 
     private fun cameraMovement(transform: TransformComponent, movement: MovementComponent) {

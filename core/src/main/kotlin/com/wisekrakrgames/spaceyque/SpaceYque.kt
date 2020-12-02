@@ -25,7 +25,7 @@ class SpaceYque : KtxGame<AbstractScreen>() {
 
         graphicsRenderer.init()
         //creates multiple entities and places a texture on top of it
-        spaceEngine.initEntities(gameEngine, graphicsRenderer)
+        spaceEngine.initEntities(graphicsRenderer)
 
         addScreen(GameScreen(this))
         addScreen(SecondScreen(this))
