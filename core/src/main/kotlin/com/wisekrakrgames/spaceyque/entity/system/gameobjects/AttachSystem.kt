@@ -1,4 +1,4 @@
-package com.wisekrakrgames.spaceyque.entity.system
+package com.wisekrakrgames.spaceyque.entity.system.gameobjects
 
 import com.badlogic.ashley.core.Engine
 import com.badlogic.ashley.core.Entity
@@ -8,9 +8,9 @@ import com.wisekrakrgames.spaceyque.entity.component.AttachComponent
 import com.wisekrakrgames.spaceyque.entity.component.GraphicComponent
 import com.wisekrakrgames.spaceyque.entity.component.RemoveComponent
 import com.wisekrakrgames.spaceyque.entity.component.TransformComponent
-import com.wisekrakrgames.spaceyque.entity.system.ComponentMapperHolder.Companion.getAttachComponent
-import com.wisekrakrgames.spaceyque.entity.system.ComponentMapperHolder.Companion.getGraphicsComponent
-import com.wisekrakrgames.spaceyque.entity.system.ComponentMapperHolder.Companion.getTransformComponent
+import com.wisekrakrgames.spaceyque.entity.system.core.ComponentMapperHolder.Companion.getAttachComponent
+import com.wisekrakrgames.spaceyque.entity.system.core.ComponentMapperHolder.Companion.getGraphicsComponent
+import com.wisekrakrgames.spaceyque.entity.system.core.ComponentMapperHolder.Companion.getTransformComponent
 import ktx.ashley.addComponent
 import ktx.ashley.allOf
 import ktx.ashley.get

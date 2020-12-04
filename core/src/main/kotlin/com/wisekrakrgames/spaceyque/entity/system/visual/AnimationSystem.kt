@@ -1,4 +1,4 @@
-package com.wisekrakrgames.spaceyque.entity.system
+package com.wisekrakrgames.spaceyque.entity.system.visual
 
 import com.badlogic.ashley.core.Engine
 import com.badlogic.ashley.core.Entity
@@ -10,8 +10,8 @@ import com.wisekrakrgames.spaceyque.entity.component.Animation2D
 import com.wisekrakrgames.spaceyque.entity.component.AnimationComponent
 import com.wisekrakrgames.spaceyque.entity.component.AnimationType
 import com.wisekrakrgames.spaceyque.entity.component.GraphicComponent
-import com.wisekrakrgames.spaceyque.entity.system.ComponentMapperHolder.Companion.getAnimationComponent
-import com.wisekrakrgames.spaceyque.entity.system.ComponentMapperHolder.Companion.getGraphicsComponent
+import com.wisekrakrgames.spaceyque.entity.system.core.ComponentMapperHolder.Companion.getAnimationComponent
+import com.wisekrakrgames.spaceyque.entity.system.core.ComponentMapperHolder.Companion.getGraphicsComponent
 import ktx.ashley.allOf
 import ktx.ashley.get
 import ktx.log.debug

@@ -20,7 +20,10 @@ class PlayerEntity(game: SpaceYque, var x: Float, var y: Float): AbstractEntity(
         }
 
         game.gameEngine.entity {
-            with<TransformComponent>(){size.set(0.3f, 0.6f)}
+            with<TransformComponent>(){
+                size.set(0.3f, 0.6f)
+                position.z = -1f
+            }
             with<AttachComponent>(){
                 entity = instance
                 offset.set(5.8f * UNIT_SCALE, -8f * UNIT_SCALE )

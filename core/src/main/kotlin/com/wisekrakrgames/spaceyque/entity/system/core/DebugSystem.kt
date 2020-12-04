@@ -1,4 +1,4 @@
-package com.wisekrakrgames.spaceyque.entity.system
+package com.wisekrakrgames.spaceyque.entity.system.core
 
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.systems.IntervalIteratingSystem
@@ -8,8 +8,8 @@ import com.badlogic.gdx.graphics.Camera
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.wisekrakrgames.spaceyque.entity.component.PlayerComponent
-import com.wisekrakrgames.spaceyque.entity.system.ComponentMapperHolder.Companion.getPlayerComponent
-import com.wisekrakrgames.spaceyque.entity.system.ComponentMapperHolder.Companion.getTransformComponent
+import com.wisekrakrgames.spaceyque.entity.system.core.ComponentMapperHolder.Companion.getPlayerComponent
+import com.wisekrakrgames.spaceyque.entity.system.core.ComponentMapperHolder.Companion.getTransformComponent
 import ktx.ashley.allOf
 import ktx.ashley.getSystem
 import kotlin.math.max
@@ -49,8 +49,6 @@ class DebugSystem(
             //kill player
             Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)->{
                 transform.position.y = 1f
-                player.health = 1f
-                player.shield = 0f
             }
             //add shield to player
             Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)->{
@@ -91,7 +89,7 @@ class DebugSystem(
         }
 
         Gdx.graphics.setTitle(
-                "SYQ DEBUG - pos:${transform.position}, rot:${transform.rotation}, life:${player.health}, shield:${player.shield}"
+                "SYQ DEBUG - pos:${transform.position},\n rot:${transform.rotation},\nlife:${player.health},\n shield:${player.shield}.\n distance:${player.distance}"
         )
     }
 }

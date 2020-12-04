@@ -1,4 +1,4 @@
-package com.wisekrakrgames.spaceyque.entity.system
+package com.wisekrakrgames.spaceyque.entity.system.core
 
 import com.badlogic.ashley.core.Entity
 import com.wisekrakrgames.spaceyque.entity.component.*
@@ -55,6 +55,13 @@ abstract class ComponentMapperHolder {
             require(bigEmpty != null) { "Entity must have a Big Empty Component: $entity" }
 
             return bigEmpty
+        }
+
+        fun getPowerUpComponent(entity: Entity): PowerUpComponent {
+            val powerUp = entity[PowerUpComponent.mapper]
+            require(powerUp != null) { "Entity must have a Power Up Component: $entity" }
+
+            return powerUp
         }
 
         fun getAnimationComponent(entity: Entity): AnimationComponent {

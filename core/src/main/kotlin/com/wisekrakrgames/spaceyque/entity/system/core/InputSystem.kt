@@ -1,4 +1,4 @@
-package com.wisekrakrgames.spaceyque.entity.system
+package com.wisekrakrgames.spaceyque.entity.system.core
 
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.systems.IteratingSystem
@@ -9,14 +9,14 @@ import com.wisekrakrgames.spaceyque.entity.component.PlayerTextureDirection
 import com.wisekrakrgames.spaceyque.entity.component.PlayerComponent
 import com.wisekrakrgames.spaceyque.entity.component.PlayerDirectionTextureComponent
 import com.wisekrakrgames.spaceyque.entity.component.TransformComponent
-import com.wisekrakrgames.spaceyque.entity.system.ComponentMapperHolder.Companion.getPlayerDirectionTextureComponent
-import com.wisekrakrgames.spaceyque.entity.system.ComponentMapperHolder.Companion.getTransformComponent
+import com.wisekrakrgames.spaceyque.entity.system.core.ComponentMapperHolder.Companion.getPlayerDirectionTextureComponent
+import com.wisekrakrgames.spaceyque.entity.system.core.ComponentMapperHolder.Companion.getTransformComponent
 import ktx.ashley.allOf
 
 private const val TOUCH_TOLERANCE_DISTANCE = 0.2f
 
 class InputSystem(
-        private val viewport: Viewport
+        private val worldViewport: Viewport
 ) : IteratingSystem(
         allOf(PlayerComponent::class, TransformComponent::class, PlayerDirectionTextureComponent::class).get()
 ) {
@@ -27,7 +27,7 @@ class InputSystem(
         val transform = getTransformComponent(entity)
 
         inputVector.set(Gdx.input.x.toFloat(), Gdx.input.y.toFloat())
-        viewport.unproject(inputVector)
+        worldViewport.unproject(inputVector)
 
         val difference = (inputVector.x - transform.position.x) - (transform.size.x * 0.5f)
 

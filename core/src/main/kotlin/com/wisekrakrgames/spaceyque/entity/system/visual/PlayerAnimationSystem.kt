@@ -1,11 +1,11 @@
-package com.wisekrakrgames.spaceyque.entity.system
+package com.wisekrakrgames.spaceyque.entity.system.visual
 
 import com.badlogic.ashley.core.Engine
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.core.EntityListener
 import com.badlogic.ashley.systems.IteratingSystem
-import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.wisekrakrgames.spaceyque.entity.component.*
+import com.wisekrakrgames.spaceyque.entity.system.core.ComponentMapperHolder
 import com.wisekrakrgames.spaceyque.graphics.GraphicsRenderer
 import ktx.ashley.allOf
 import ktx.ashley.get

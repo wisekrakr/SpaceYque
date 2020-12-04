@@ -1,6 +1,7 @@
 package com.wisekrakrgames.spaceyque.graphics
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import ktx.log.debug
@@ -11,6 +12,7 @@ private val LOG = logger<GraphicsRenderer>()
 class GraphicsRenderer : SpriteBatch(){
 
     val graphics by lazy { TextureAtlas(Gdx.files.internal("graphics/graphics.atlas")) }
+    val background by lazy { Texture("graphics/bg1.png") }
 
     fun init(){
         setAllGraphics()

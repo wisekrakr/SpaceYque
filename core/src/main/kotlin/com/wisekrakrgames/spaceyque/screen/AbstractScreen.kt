@@ -9,6 +9,8 @@ import ktx.app.KtxScreen
 
 const val WORLD_WIDTH = 9f
 const val WORLD_HEIGHT = 16f
+const val UI_WIDTH = 135f
+const val UI_HEIGHT = 240f
 const val UNIT_SCALE = 1/16f
 
 abstract class AbstractScreen(
@@ -16,10 +18,12 @@ abstract class AbstractScreen(
         val gameEngine: GameEngine = game.gameEngine,
         val graphicsRenderer: GraphicsRenderer = game.graphicsRenderer,
         val spaceEngine: SpaceEngine = game.spaceEngine,
-        val viewport: Viewport = game.viewport
+        val worldViewport: Viewport = game.worldViewport,
+        val uiViewport: Viewport = game.uiViewport
 ) : KtxScreen{
 
     override fun resize(width: Int, height: Int) {
-        viewport.update(width, height, true)
+        worldViewport.update(width, height, true)
+        uiViewport.update(width, height, true)
     }
 }
