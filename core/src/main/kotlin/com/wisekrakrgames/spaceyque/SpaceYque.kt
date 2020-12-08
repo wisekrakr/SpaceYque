@@ -2,38 +2,51 @@ package com.wisekrakrgames.spaceyque
 
 import com.badlogic.gdx.Application.LOG_DEBUG
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.Preferences
+import com.badlogic.gdx.graphics.g2d.Batch
+import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.utils.viewport.FitViewport
+import com.wisekrakrgames.spaceyque.audiovisual.audio.AudioService
+import com.wisekrakrgames.spaceyque.audiovisual.audio.DefaultAudioService
+import com.wisekrakrgames.spaceyque.audiovisual.screen.*
+import com.wisekrakrgames.spaceyque.engine.GameEngine
 import com.wisekrakrgames.spaceyque.event.GameEventManager
-import com.wisekrakrgames.spaceyque.graphics.GraphicsRenderer
-import com.wisekrakrgames.spaceyque.screen.*
+import com.wisekrakrgames.spaceyque.engine.SpaceEngine
 import ktx.app.KtxGame
+import ktx.app.KtxScreen
+import ktx.assets.async.AssetStorage
+import ktx.async.KtxAsync
 import ktx.log.debug
 import ktx.log.logger
 
 private val LOG = logger<SpaceYque>()
 
-class SpaceYque : KtxGame<AbstractScreen>() {
+class SpaceYque : KtxGame<KtxScreen>() {
     val uiViewport = FitViewport(UI_WIDTH, UI_HEIGHT)
     val worldViewport = FitViewport(WORLD_WIDTH, WORLD_HEIGHT)
-    val graphicsRenderer: GraphicsRenderer by lazy {  GraphicsRenderer() }
+    val assets: AssetStorage by lazy {
+        KtxAsync.initiate()
+        AssetStorage()
+    }
+    val audioService: AudioService by lazy { DefaultAudioService(assets) }
+    val preferences: Preferences by lazy { Gdx.app.getPreferences("space-y-que") }
+    val batch: Batch by lazy { SpriteBatch() }
     val gameEventManager by lazy { GameEventManager() }
-    val spaceEngine: SpaceEngine by lazy { SpaceEngine(this, gameEventManager) }
-    val gameEngine: GameEngine by lazy { GameEngine(gameEventManager, worldViewport, uiViewport, graphicsRenderer).apply {
-        addAllSystems()
-    } }
+    val gameEngine: GameEngine by lazy { GameEngine(this).apply { addAllSystems() } }
+    val spaceEngine: SpaceEngine by lazy { SpaceEngine(this, gameEngine, gameEventManager) }
 
 
     override fun create() {
         Gdx.app.logLevel = LOG_DEBUG
-        LOG.debug { "Initiated Game" }
+        LOG.debug { "Initiated Game " }
 
-        graphicsRenderer.init()
-        //creates multiple entities and places a texture on top of it
-        spaceEngine.initEntities()
-
-        addScreen(GameScreen(this))
-        addScreen(SecondScreen(this))
-        setScreen<GameScreen>()
+        addScreen(LoadingScreen(this))
+        setScreen<LoadingScreen>()
     }
 
+    override fun dispose() {
+        super.dispose()
+        assets.dispose()
+        batch.dispose()
+    }
 }

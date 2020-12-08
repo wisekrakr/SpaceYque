@@ -5,7 +5,7 @@ import com.badlogic.ashley.systems.IteratingSystem
 import com.wisekrakrgames.spaceyque.entity.component.BigEmptyComponent
 import com.wisekrakrgames.spaceyque.entity.component.TransformComponent
 import com.wisekrakrgames.spaceyque.entity.system.core.ComponentMapperHolder
-import com.wisekrakrgames.spaceyque.screen.WORLD_HEIGHT
+import com.wisekrakrgames.spaceyque.audiovisual.screen.WORLD_HEIGHT
 import ktx.ashley.allOf
 import ktx.log.logger
 
@@ -24,7 +24,7 @@ class BigEmptySystem : IteratingSystem(allOf(TransformComponent::class, BigEmpty
 
         if(isGrowing)growDamageArea(bigEmptyComponent)
 
-        if(bigEmptyComponent.damageArea >= WORLD_HEIGHT/2 + 1f){
+        if(bigEmptyComponent.damageArea >= WORLD_HEIGHT /2 + 1f){
             isGrowing = false
             bigEmptyComponent.damageArea -= DAMAGE_GROW_TICKER
 

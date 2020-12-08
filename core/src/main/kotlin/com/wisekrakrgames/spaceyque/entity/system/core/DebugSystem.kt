@@ -12,13 +12,16 @@ import com.wisekrakrgames.spaceyque.entity.system.core.ComponentMapperHolder.Com
 import com.wisekrakrgames.spaceyque.entity.system.core.ComponentMapperHolder.Companion.getTransformComponent
 import ktx.ashley.allOf
 import ktx.ashley.getSystem
+import ktx.log.debug
+import ktx.log.logger
 import kotlin.math.max
 import kotlin.math.min
 
+private val LOG = logger<DebugSystem>()
 private const val DEBUG_UPDATE_RATE = 0.5f
 
 class DebugSystem(
-        var camera: Camera
+        private var camera: Camera
 ) : IntervalIteratingSystem(allOf(PlayerComponent::class).get(), DEBUG_UPDATE_RATE) {
 
     private val shapeRenderer: ShapeRenderer = ShapeRenderer()
@@ -33,7 +36,7 @@ class DebugSystem(
         val player = getPlayerComponent(entity)
 
         shapeRenderer.begin()
-        shapeRenderer.projectionMatrix = camera.combined;
+        shapeRenderer.projectionMatrix = camera.combined
         shapeRenderer.color = Color.GOLD
         shapeRenderer.circle(transform.interpolatedPosition.x + (transform.size.x * 0.5f),
                 transform.interpolatedPosition.y + (transform.size.y * 0.5f), 0.5f)
@@ -45,22 +48,28 @@ class DebugSystem(
                 transform.setInitialPosition(0f,0f,0f)
                 player.health = 1f
                 player.shield = 0f
+                LOG.debug { "RESET PLAYER" }
+
             }
             //kill player
             Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)->{
                 transform.position.y = 1f
+                LOG.debug { "KILL PLAYER" }
             }
             //add shield to player
             Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)->{
                 player.shield = min(player.maxShield, player.shield + 25f)
+                LOG.debug { "ADD SHIELD TO PLAYER" }
             }
             //remove shield from player
-            Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)->{
+            Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)->{
                 player.shield = max(0f, player.shield - 25f)
+                LOG.debug { "REMOVE SHIELD TO PLAYER" }
             }
             //disable movement
             Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)->{
                 engine.getSystem<MovementSystem>().setProcessing(false)
+                LOG.debug { "STOP EVERYTHING" }
             }
             //enable movement
             Gdx.input.isKeyJustPressed(Input.Keys.NUM_5)->{

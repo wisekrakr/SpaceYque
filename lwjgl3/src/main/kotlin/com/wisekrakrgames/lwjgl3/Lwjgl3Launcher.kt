@@ -3,8 +3,8 @@ package com.wisekrakr.lwjgl3
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration
 import com.wisekrakrgames.spaceyque.SpaceYque
-import com.wisekrakrgames.spaceyque.screen.WORLD_HEIGHT
-import com.wisekrakrgames.spaceyque.screen.WORLD_WIDTH
+import com.wisekrakrgames.spaceyque.audiovisual.screen.WORLD_HEIGHT
+import com.wisekrakrgames.spaceyque.audiovisual.screen.WORLD_WIDTH
 
 
 fun main() {

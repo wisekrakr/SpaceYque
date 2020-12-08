@@ -4,19 +4,22 @@ import com.badlogic.ashley.core.Engine
 import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.core.EntityListener
 import com.badlogic.ashley.systems.IteratingSystem
-import com.wisekrakrgames.spaceyque.entity.component.*
+import com.badlogic.gdx.graphics.g2d.TextureAtlas
+import com.wisekrakrgames.spaceyque.entity.component.GraphicComponent
+import com.wisekrakrgames.spaceyque.entity.component.PlayerComponent
+import com.wisekrakrgames.spaceyque.entity.component.PlayerDirectionTextureComponent
+import com.wisekrakrgames.spaceyque.entity.component.PlayerTextureDirection
 import com.wisekrakrgames.spaceyque.entity.system.core.ComponentMapperHolder
-import com.wisekrakrgames.spaceyque.graphics.GraphicsRenderer
 import ktx.ashley.allOf
 import ktx.ashley.get
 
-class PlayerAnimationSystem(graphicsRenderer: GraphicsRenderer) :
+class PlayerAnimationSystem(graphics: TextureAtlas) :
         IteratingSystem(allOf(PlayerComponent::class, PlayerDirectionTextureComponent::class, GraphicComponent::class).get()),
         EntityListener{
 
-    private val defaultRegion = graphicsRenderer.graphics.findRegion("playerShip2_blue")
-    private val leftRegion = graphicsRenderer.graphics.findRegion("playerShip2_blue_left")
-    private val rightRegion = graphicsRenderer.graphics.findRegion("playerShip2_blue_right")
+    private val defaultRegion = graphics.findRegion("player_red")
+    private val leftRegion = graphics.findRegion("player_red_left")
+    private val rightRegion = graphics.findRegion("player_red_right")
 
     override fun addedToEngine(engine: Engine) {
         super.addedToEngine(engine)

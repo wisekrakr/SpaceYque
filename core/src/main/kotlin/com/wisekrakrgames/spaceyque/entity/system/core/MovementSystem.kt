@@ -13,13 +13,16 @@ import com.wisekrakrgames.spaceyque.entity.system.core.ComponentMapperHolder.Com
 import com.wisekrakrgames.spaceyque.entity.system.core.ComponentMapperHolder.Companion.getTransformComponent
 import com.wisekrakrgames.spaceyque.event.GameEvent
 import com.wisekrakrgames.spaceyque.event.GameEventManager
-import com.wisekrakrgames.spaceyque.screen.WORLD_HEIGHT
-import com.wisekrakrgames.spaceyque.screen.WORLD_WIDTH
+import com.wisekrakrgames.spaceyque.audiovisual.screen.WORLD_HEIGHT
+import com.wisekrakrgames.spaceyque.audiovisual.screen.WORLD_WIDTH
 import ktx.ashley.allOf
 import ktx.ashley.exclude
 import ktx.ashley.get
+import ktx.log.debug
+import ktx.log.logger
 import kotlin.math.*
 
+private val LOG = logger<MovementSystem>()
 
 private const val VER_ACCELERATION = 2.25f
 private const val HOR_ACCELERATION = 16.5f
@@ -47,6 +50,7 @@ class MovementSystem(
                     movePlayer(transform, move, player, direction, deltaTime)
                 }
             } else {
+
                 moveEntity(transform, move, deltaTime)
             }
         }
@@ -77,16 +81,16 @@ class MovementSystem(
                 MAX_VER_POS_PLAYER_SPEED
         )
 
-        // move player and update distance travelled so far
         val oldY = transform.position.y
 
+        moveEntity(transform, move, deltaTime)
+
+        // move player and update distance travelled so far
         player.distance += abs(transform.position.y - oldY)
         gameEventManager.dispatchEvent(GameEvent.PlayerMove.apply {
             distance = player.distance
             speed = move.velocity.y
         })
-
-        moveEntity(transform, move, deltaTime)
     }
 
     private fun moveEntity(

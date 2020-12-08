@@ -4,12 +4,13 @@ import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.systems.IteratingSystem
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
+import com.wisekrakrgames.spaceyque.audiovisual.audio.AudioService
 import com.wisekrakrgames.spaceyque.entity.component.*
 import com.wisekrakrgames.spaceyque.entity.system.core.ComponentMapperHolder
 import com.wisekrakrgames.spaceyque.event.GameEvent
 import com.wisekrakrgames.spaceyque.event.GameEventManager
-import com.wisekrakrgames.spaceyque.screen.WORLD_HEIGHT
-import com.wisekrakrgames.spaceyque.screen.WORLD_WIDTH
+import com.wisekrakrgames.spaceyque.audiovisual.screen.WORLD_HEIGHT
+import com.wisekrakrgames.spaceyque.audiovisual.screen.WORLD_WIDTH
 import ktx.ashley.*
 import ktx.collections.GdxArray
 import ktx.collections.gdxArrayOf
@@ -27,7 +28,7 @@ private class SpawnPattern(
     val types: GdxArray<PowerUpType> = gdxArrayOf(type1, type2, type3, type4, type5)
 )
 
-class PowerUpSystem(val gameEventManager: GameEventManager) :
+class PowerUpSystem(private val gameEventManager: GameEventManager, private val audioService: AudioService) :
         IteratingSystem(allOf(PowerUpComponent::class, TransformComponent::class).exclude(RemoveComponent::class).get()) {
 
     private val playerRectangle = Rectangle()
@@ -127,6 +128,8 @@ class PowerUpSystem(val gameEventManager: GameEventManager) :
                 it.health = min(it.maxHealth, it.health + powerUpType.healthGain)
                 it.shield = min(it.maxShield, it.shield + powerUpType.shieldGain)
             }
+            // play sound effect
+            audioService.play(powerUpType.soundAsset)
 
             // dispatch event
             gameEventManager.dispatchEvent(GameEvent.PowerUp.apply {
